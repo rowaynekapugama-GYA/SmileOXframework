@@ -136,6 +136,13 @@
     border:1px solid rgba(52,231,166,.22);
   }
   .icon-badge.round{border-radius:50%;}
+  .voice-avatar{
+    width:56px; height:56px; border-radius:50%;
+    overflow:hidden; flex-shrink:0;
+    border:1px solid rgba(52,231,166,.3);
+    box-shadow:0 0 0 3px rgba(52,231,166,.08);
+  }
+  .voice-avatar img{width:100%; height:100%; object-fit:cover; display:block;}
 
   /* HERO / REVEAL */
   #reveal, #hero{min-height:100svh; display:flex; flex-direction:column; justify-content:flex-end; padding-bottom:80px;}
@@ -563,7 +570,7 @@
     <div class="voice-grid">
       <div class="voice-card">
         <div class="voice-top">
-          <div class="icon-badge round"><svg class="ic"><use href="#i-megaphone"/></svg></div>
+          <div class="voice-avatar"><img src="images/voice-marketing.jpg" alt="Your marketing company"></div>
           <div><div class="voice-role">Your marketing company</div><div class="voice-sub">Lead response</div></div>
         </div>
         <p class="voice-quote">"No process. No urgency. Every lead is worth $100k &mdash; we've sent you 100 of them, and you're still not converting."</p>
@@ -571,7 +578,7 @@
 
       <div class="voice-card">
         <div class="voice-top">
-          <div class="icon-badge round"><svg class="ic"><use href="#i-clock"/></svg></div>
+          <div class="voice-avatar"><img src="images/voice-dentist.jpg" alt="Your associate dentist"></div>
           <div><div class="voice-role">Your associate dentist</div><div class="voice-sub">Chair time</div></div>
         </div>
         <p class="voice-quote">They only plan what they can deliver, then reject the rest. "More marketing" really means "give me shoe-in cases that fit my ability." One plan promised, another delivered &mdash; gone for good.</p>
@@ -579,7 +586,7 @@
 
       <div class="voice-card">
         <div class="voice-top">
-          <div class="icon-badge round"><svg class="ic"><use href="#i-compass"/></svg></div>
+          <div class="voice-avatar"><img src="images/voice-coach.jpg" alt="Your BD coach / guru"></div>
           <div><div class="voice-role">Your BD coach / guru</div><div class="voice-sub">Flavour of the month</div></div>
         </div>
         <p class="voice-quote">Paywalled portals. Feel-good unicorns and fairy floss. A to-do list even Encyclopaedia Britannica rejected. All you actually need is a short "not to do" list &mdash; and a customised workflow that fits your practice.</p>
@@ -587,7 +594,7 @@
 
       <div class="voice-card">
         <div class="voice-top">
-          <div class="icon-badge round"><svg class="ic"><use href="#i-moon"/></svg></div>
+          <div class="voice-avatar"><img src="images/voice-frontdesk.jpg" alt="Your front desk"></div>
           <div><div class="voice-role">Your front desk</div><div class="voice-sub">After hours</div></div>
         </div>
         <p class="voice-quote">The Facebook leads just ghost the phone calls. And you're not there at 11pm to respond the moment the ad gets tapped.</p>
@@ -595,7 +602,7 @@
 
       <div class="voice-card">
         <div class="voice-top">
-          <div class="icon-badge round"><svg class="ic"><use href="#i-cpu"/></svg></div>
+          <div class="voice-avatar"><img src="images/voice-manufacturer.jpg" alt="The manufacturer"></div>
           <div><div class="voice-role">The manufacturer</div><div class="voice-sub">Hardware</div></div>
         </div>
         <p class="voice-quote">A new scanner. A new mill. A new CBCT. Then a cloud rebranded as "growth" &mdash; storage, sharing, dashboards dressed up as strategy. More clicks to nowhere. A nice story to sell equipment &mdash; and still irrelevant without a patient in the chair.</p>
@@ -603,7 +610,7 @@
 
       <div class="voice-card">
         <div class="voice-top">
-          <div class="icon-badge round"><svg class="ic"><use href="#i-cap"/></svg></div>
+          <div class="voice-avatar"><img src="images/voice-education.jpg" alt="The education company"></div>
           <div><div class="voice-role">The education company</div><div class="voice-sub">Confidence gap</div></div>
         </div>
         <p class="voice-quote">Your associates lack confidence. They need five years of retraining.</p>
