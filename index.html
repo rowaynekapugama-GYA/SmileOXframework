@@ -136,13 +136,100 @@
     border:1px solid rgba(52,231,166,.22);
   }
   .icon-badge.round{border-radius:50%;}
-  .voice-avatar{
-    width:56px; height:56px; border-radius:50%;
-    overflow:hidden; flex-shrink:0;
-    border:1px solid rgba(52,231,166,.3);
-    box-shadow:0 0 0 3px rgba(52,231,166,.08);
+  .voice-photo{
+    margin:-24px -24px 4px;
+    height:185px; overflow:hidden;
+    border-bottom:1px solid var(--card-border);
   }
-  .voice-avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+  .voice-photo img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease;}
+  .voice-card:hover .voice-photo img{transform:scale(1.04);}
+
+  /* ORBIT ROTOR GRAPHIC */
+  .orbit{
+    position:absolute;
+    width:820px; height:820px;
+    right:-190px; top:50%;
+    transform:translateY(-58%);
+    z-index:0;
+    pointer-events:none;
+    -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 34%, #000 82%, transparent 100%);
+    mask-image:linear-gradient(90deg, transparent 0%, #000 34%, #000 82%, transparent 100%);
+  }
+  .orbit-ring{
+    position:absolute; inset:0; border-radius:50%;
+    border:1px dashed rgba(52,231,166,.22);
+    animation:orbitSpin 90s linear infinite;
+  }
+  .orbit-ring.r2{inset:95px; border-color:rgba(52,231,166,.14); border-style:solid; animation:orbitSpin 140s linear infinite reverse;}
+  .orbit-ring.r3{inset:190px; border-color:rgba(255,255,255,.07); animation:orbitSpin 200s linear infinite;}
+  .orbit-core{
+    position:absolute; left:50%; top:50%;
+    width:22px; height:22px; margin:-11px 0 0 -11px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 24px rgba(52,231,166,.8), 0 0 90px rgba(52,231,166,.35);
+  }
+  .orbit-pulse{
+    position:absolute; left:50%; top:50%;
+    width:22px; height:22px; margin:-11px 0 0 -11px;
+    border-radius:50%;
+    border:1px solid rgba(52,231,166,.55);
+    animation:orbitPulse 4.5s ease-out infinite;
+  }
+  .orbit-pulse.p2{animation-delay:1.5s;}
+  .orbit-pulse.p3{animation-delay:3s;}
+  .orbit-spinner{
+    position:absolute; inset:0;
+    animation:orbitSpin 70s linear infinite;
+  }
+  .orbit-arm{
+    position:absolute; left:50%; top:50%;
+    width:1px; height:315px;
+    margin-left:-0.5px;
+    transform-origin:top center;
+    background:linear-gradient(180deg, rgba(52,231,166,.4) 0%, rgba(52,231,166,.04) 100%);
+  }
+  .orbit-node{
+    position:absolute; left:50%; top:50%;
+  }
+  .orbit-unrotate{display:block;}
+  .orbit-chip{
+    display:flex; align-items:center; gap:8px;
+    background:rgba(17,31,26,.88);
+    border:1px solid rgba(52,231,166,.32);
+    border-radius:99px;
+    padding:10px 18px;
+    font-size:14px; font-weight:700; color:var(--text);
+    white-space:nowrap;
+    transform:translate(-50%,-50%);
+    box-shadow:0 0 22px rgba(52,231,166,.12);
+    animation:orbitCounter 70s linear infinite;
+  }
+  .orbit-chip .ic{width:15px; height:15px; color:var(--accent);}
+  @keyframes orbitSpin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+  }
+  @keyframes orbitCounter{
+    from{transform:translate(-50%,-50%) rotate(360deg);}
+    to{transform:translate(-50%,-50%) rotate(0deg);}
+  }
+  @keyframes orbitPulse{
+    0%{transform:scale(1); opacity:.8;}
+    100%{transform:scale(16); opacity:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .orbit-ring, .orbit-spinner, .orbit-chip, .orbit-pulse{animation:none;}
+  }
+  @media (max-width: 1200px){
+    .orbit{width:640px; height:640px; right:-240px; opacity:.55;}
+    .orbit-arm{height:245px;}
+  }
+  @media (max-width: 880px){
+    .orbit{width:520px; height:520px; right:-200px; top:30%; opacity:.35;}
+    .orbit-arm{height:200px;}
+    .orbit-chip{font-size:12px; padding:8px 14px;}
+  }
 
   /* HERO / REVEAL */
   #reveal, #hero{min-height:100svh; display:flex; flex-direction:column; justify-content:flex-end; padding-bottom:80px;}
@@ -512,6 +599,35 @@
 <!-- REVEAL: THE UNDISCOVERED SPACE -->
 <section id="reveal">
   <div class="bg-photo" style="opacity:.4;"><img src="images/bg-map.jpg" alt="Map of uncharted territory at night"></div>
+  <div class="orbit" aria-hidden="true">
+    <div class="orbit-ring"></div>
+    <div class="orbit-ring r2"></div>
+    <div class="orbit-ring r3"></div>
+    <div class="orbit-pulse"></div>
+    <div class="orbit-pulse p2"></div>
+    <div class="orbit-pulse p3"></div>
+    <div class="orbit-spinner"><div class="orbit-arm" style="transform:rotate(90deg);"></div><div class="orbit-arm" style="transform:rotate(150deg);"></div><div class="orbit-arm" style="transform:rotate(210deg);"></div><div class="orbit-arm" style="transform:rotate(270deg);"></div><div class="orbit-arm" style="transform:rotate(330deg);"></div><div class="orbit-arm" style="transform:rotate(390deg);"></div>
+    <div class="orbit-node" style="transform:translate(0px,-315px);">
+      <span class="orbit-chip"><svg class="ic"><use href="#i-magnet"/></svg>Capture</span>
+    </div>
+    <div class="orbit-node" style="transform:translate(273px,-157px);">
+      <span class="orbit-chip"><svg class="ic"><use href="#i-bolt"/></svg>Respond</span>
+    </div>
+    <div class="orbit-node" style="transform:translate(273px,157px);">
+      <span class="orbit-chip"><svg class="ic"><use href="#i-sprout"/></svg>Nurture</span>
+    </div>
+    <div class="orbit-node" style="transform:translate(0px,315px);">
+      <span class="orbit-chip"><svg class="ic"><use href="#i-check"/></svg>Convert</span>
+    </div>
+    <div class="orbit-node" style="transform:translate(-273px,157px);">
+      <span class="orbit-chip"><svg class="ic"><use href="#i-heart"/></svg>Retain</span>
+    </div>
+    <div class="orbit-node" style="transform:translate(-273px,-158px);">
+      <span class="orbit-chip"><svg class="ic"><use href="#i-trend"/></svg>Grow</span>
+    </div>
+    </div>
+    <div class="orbit-core"></div>
+  </div>
   <div class="wrap">
     <div class="kicker">A category that doesn't exist yet</div>
     <h1>Dentistry quietly became retail healthcare. And it left behind a gap almost no one has noticed.</h1>
@@ -569,48 +685,48 @@
 
     <div class="voice-grid">
       <div class="voice-card">
+        <div class="voice-photo"><img src="images/voice-marketing.jpg" alt="Your marketing company"></div>
         <div class="voice-top">
-          <div class="voice-avatar"><img src="images/voice-marketing.jpg" alt="Your marketing company"></div>
           <div><div class="voice-role">Your marketing company</div><div class="voice-sub">Lead response</div></div>
         </div>
         <p class="voice-quote">"No process. No urgency. Every lead is worth $100k &mdash; we've sent you 100 of them, and you're still not converting."</p>
       </div>
 
       <div class="voice-card">
+        <div class="voice-photo"><img src="images/voice-dentist.jpg" alt="Your associate dentist"></div>
         <div class="voice-top">
-          <div class="voice-avatar"><img src="images/voice-dentist.jpg" alt="Your associate dentist"></div>
           <div><div class="voice-role">Your associate dentist</div><div class="voice-sub">Chair time</div></div>
         </div>
         <p class="voice-quote">They only plan what they can deliver, then reject the rest. "More marketing" really means "give me shoe-in cases that fit my ability." One plan promised, another delivered &mdash; gone for good.</p>
       </div>
 
       <div class="voice-card">
+        <div class="voice-photo"><img src="images/voice-coach.jpg" alt="Your BD coach / guru"></div>
         <div class="voice-top">
-          <div class="voice-avatar"><img src="images/voice-coach.jpg" alt="Your BD coach / guru"></div>
           <div><div class="voice-role">Your BD coach / guru</div><div class="voice-sub">Flavour of the month</div></div>
         </div>
         <p class="voice-quote">Paywalled portals. Feel-good unicorns and fairy floss. A to-do list even Encyclopaedia Britannica rejected. All you actually need is a short "not to do" list &mdash; and a customised workflow that fits your practice.</p>
       </div>
 
       <div class="voice-card">
+        <div class="voice-photo"><img src="images/voice-frontdesk.jpg" alt="Your front desk"></div>
         <div class="voice-top">
-          <div class="voice-avatar"><img src="images/voice-frontdesk.jpg" alt="Your front desk"></div>
           <div><div class="voice-role">Your front desk</div><div class="voice-sub">After hours</div></div>
         </div>
         <p class="voice-quote">The Facebook leads just ghost the phone calls. And you're not there at 11pm to respond the moment the ad gets tapped.</p>
       </div>
 
       <div class="voice-card">
+        <div class="voice-photo"><img src="images/voice-manufacturer.jpg" alt="The manufacturer"></div>
         <div class="voice-top">
-          <div class="voice-avatar"><img src="images/voice-manufacturer.jpg" alt="The manufacturer"></div>
           <div><div class="voice-role">The manufacturer</div><div class="voice-sub">Hardware</div></div>
         </div>
         <p class="voice-quote">A new scanner. A new mill. A new CBCT. Then a cloud rebranded as "growth" &mdash; storage, sharing, dashboards dressed up as strategy. More clicks to nowhere. A nice story to sell equipment &mdash; and still irrelevant without a patient in the chair.</p>
       </div>
 
       <div class="voice-card">
+        <div class="voice-photo"><img src="images/voice-education.jpg" alt="The education company"></div>
         <div class="voice-top">
-          <div class="voice-avatar"><img src="images/voice-education.jpg" alt="The education company"></div>
           <div><div class="voice-role">The education company</div><div class="voice-sub">Confidence gap</div></div>
         </div>
         <p class="voice-quote">Your associates lack confidence. They need five years of retraining.</p>
